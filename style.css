@@ -1,0 +1,15 @@
+.cart-container{
+    display: inline-block;
+}
+
+.card-item{
+    width: 100px;
+    height: 145px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-left: 5px;
+}
+.card-image{
+    max-width: 100%;
+    max-height: 100%;    
+}
