@@ -8,36 +8,43 @@
     <title>probability</title>
     <link rel="stylesheet" href="style.css">
     <script src="vue.js"></script>
-    <script src="core.js"></script>
 </head>
 
 <body>
-    <div id="app">
+    <div id="app-div">
+        <label for="">total hands to draw</label>
+        <input type="number" id="total_hands_to_draw" placeholder="total hands to draw" v-model="total_hand">
+        <button v-on:click="start">start</button>
+        <label>draw hand / win hand</label>
+        <label>{{draw_number}} / {{win_number}}</label>
+        <!-- all wining hands -->
         <div>
-            <h1>player 1</h1>
-            <div class="cart-container">
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
-                </div>
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
-                </div>
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
-                </div>
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
-                </div>
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
-                </div>
-                <div class="card-item">
-                    <img src="cards/27.png" class="card-image">
+            <h1>all hands</h1>
+            <div v-for="hand in wining_hands">
+                <div v-for="card in hand" class="cart-item-choose-small">
+                    <img v-bind:src="'cards/'+card+'.png'" class="card-image">
                 </div>
             </div>
         </div>
-    </div>
+        <div class="choose-card-container">
+            <h2>choose card</h2>
+            <div v-for="item in card_for_choose" class="cart-item-choose" v-bind:class="{ 'cart-item-choose-1': item.is_choosen }">
+                <img v-bind:src="'cards/'+item.value+'.png'" class="card-image" alt="" v-on:click="click_choose(item.value-1)">
+            </div>
+        </div>
 
+        <div class="wining_hands_container temp" style="width: 500px;">
+            <template v-for="item in card_for_choose">
+            <div class="cart-item-choose" v-if="item.is_choosen" v-on:click="click_choose(item.value-1)">
+                <img  v-bind:src="'cards/'+item.value+'.png'" class="card-image">
+            </div>
+            </template >
+        <br/>
+        <button v-on:click="add_hand()">add this hand</button>
+        </div>
+    </div>
+    
+    <script src="core.js"></script>
 </body>
 
 </html>
