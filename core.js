@@ -137,6 +137,9 @@ var vm;
                 }
                 return true;
             },
+            remove_this_hand(index) {
+                this.wining_hands.splice(index, 1);
+            },
             start() {
                 if (this.wining_hands.length == 0) {
                     alert('please add at least 1 hand');

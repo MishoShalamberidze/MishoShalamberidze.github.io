@@ -20,10 +20,11 @@
         <!-- all wining hands -->
         <div>
             <h1>all hands</h1>
-            <div v-for="hand in wining_hands">
+            <div v-for="(hand, index) in wining_hands">
                 <div v-for="card in hand" class="cart-item-choose-small">
                     <img v-bind:src="'cards/'+card+'.png'" class="card-image">
                 </div>
+                <button v-on:click="remove_this_hand(index)">remove</button>
             </div>
         </div>
         <div class="choose-card-container">
